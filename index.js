@@ -22,7 +22,9 @@ morgan.token('data', function(req, res){
 })
 
 app.use(cors())
+
 app.use(express.static('build'))
+
 app.use(morgan(':method :data :url :status :res[content-length] - :response-time ms'
 ))
 app.use(bodyParser.json())
