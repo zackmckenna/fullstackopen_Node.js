@@ -31,6 +31,9 @@ if (process.argv.length >= 4){
     console.log(`added ${person.name} number ${person.number} to phonebook`)
     mongoose.connection.close()
   })
+  .catch(error => {
+    console.log(error)
+  })
 }
 
 if (process.argv.length <= 3){
@@ -39,5 +42,8 @@ if (process.argv.length <= 3){
       console.log(person)
     })
     mongoose.connection.close()
+  })
+  .catch(error => {
+    console.log(error)
   })
 }
