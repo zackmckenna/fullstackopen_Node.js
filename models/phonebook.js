@@ -1,12 +1,13 @@
 const mongoose = require('mongoose')
-
+const dotenv = require('dotenv').config();
 /*const url = `mongodb+srv://fullstack:[password]@cluster0-lcd1p.mongodb.net/phonebook-app?retryWrites=true&w=majority`*/
-
+console.log(process.env)
+console.log(process.env.MONGODB_URI)
 const url = process.env.MONGODB_URI
 
 console.log('connecting to', url)
 
-mongoose.connect(url, {useMongoClient: true})
+mongoose.connect(url, {useNewParser: true})
   .then(result => {
     console.log('connected to MongoDB')
   })
