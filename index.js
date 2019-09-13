@@ -37,8 +37,6 @@ app.get('/api/persons', (request, response) => {
   })
 })
 
-let persons = [ ]
-
 app.get('/info', (request, response) => {
   response.send(`
     <h1>Phonebook has info for ${persons.length} people.</h1>
@@ -65,7 +63,7 @@ app.post('/api/persons', (request, response) => {
   const body = request.body
 
   if (body.content === undefined) {
-    retunr response.status(400).json({ error: 'content missing' })
+    return response.status(400).json({ error: 'content missing' })
   }
 
   const person = new Person({
