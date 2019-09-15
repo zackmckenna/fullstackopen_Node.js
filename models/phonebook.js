@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
+const uniqueValidator = require('mongoose-unique-validator')
 const dotenv = require('dotenv').config();
-/*const url = `mongodb+srv://fullstack:[password]@cluster0-lcd1p.mongodb.net/phonebook-app?retryWrites=true&w=majority`*/
+
 console.log(process.env)
 console.log(process.env.MONGODB_URI)
 const url = process.env.MONGODB_URI
@@ -16,10 +17,23 @@ mongoose.connect(url, {useNewParser: true})
   })
 
 const personSchema = new mongoose.Schema({
-  name: String,
-  number: String,
-  date: Date,
+  name: {
+    type: String,
+    minlength: 3,
+    required: true,
+    unique: true
+  },
+  number: {
+    type: String,
+    minlength: 8,
+    required: true
+  },
+  date: {
+    type: Date,
+    required: true
+  }
 })
+personSchema.plugin(uniqueValidator)
 
 personSchema.set('toJSON', {
   transform: (document, returnedObject) => {

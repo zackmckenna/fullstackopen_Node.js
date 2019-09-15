@@ -42,8 +42,15 @@ app.post('/api/persons', (request, response) => {
     date: new Date(),
   })
 
-  person.save().then(savedPerson => {
-    response.json(savedPerson.toJSON())
+  person
+  .save()
+  .then(savedPerson => savedPerson.toJSON())
+  .then(savedAndFormattedPerson => {
+    response.json(savedAndFormattedPerson)
+  })
+  .catch(error => {
+    console.log(error)
+    response.status(422).end()
   })
 })
 
@@ -125,6 +132,8 @@ const errorHandler = (error, request, response, next) => {
 
   if (error.name === 'CastError' && error.kind === 'ObjectId'){
     return response.status(400).send({ error : 'id is wrong format'})
+  } else if (error.name === 'ValidationError') {
+    return response.status(400).json({ error: error.message})
   }
 
   next(error)
