@@ -4,7 +4,7 @@
   "description": "Node exercises",
   "main": "index.js",
   "scripts": {
-    "build:ui": "rm -rf build && cd ../../fullstackopen_react/part2.6 && npm run build --prod && cp -r build ../.. fullstackopen_node/fullstackopen_Node.js",
+    "build:ui": "rm -rf build && cd ../fullstackopen_react/part2.6 && npm run build --prod && cp -r build ../fullstackopen_Node.js",
     "deploy": "git push heroku master",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push && npm run deploy",
     "logs:prod": "heroku logs --tail",
