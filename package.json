@@ -4,12 +4,13 @@
   "description": "Node exercises",
   "main": "index.js",
   "scripts": {
-    "build:ui": "rm -rf build && cd ../fullstackopen_react/part2.6 && npm run build --prod && cp -r build ../fullstackopen_Node.js",
+    "build:ui": "rm -rf build && cd ../fullstackopen_react/part2.6 && npm run build --prod && cp -r build ../../fullstackopen_Node.js",
     "deploy": "git push heroku master",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push && npm run deploy",
     "logs:prod": "heroku logs --tail",
     "start": "node index.js",
     "watch": "nodemon index.js",
+    "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,7 +28,6 @@
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "mongoose": "^5.7.0",
-    "mongoose-unique-validator": "^2.0.3",
     "morgan": "^1.9.1"
   },
   "devDependencies": {
